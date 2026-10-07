@@ -5,20 +5,10 @@
       "slug": "welcome",
       "date": "2026-10-07",
       "category": "Personal",
-      "excerpt": "A short introduction to this website and the ideas I hope to share here.",
+      "excerpt": "A short introduction to this space, why I created it, and the ideas I hope to explore here.o share here.",
       "featured": true,
       "published": true,
-      "body": "## Why this space exists\n\nThis website is a home for my ideas, notes, projects, and longer-form writing.\n\nI want a place that I control, where I can publish at my own pace and organise my work in a way that makes sense to me.\n\n## What to expect\n\nExpect thoughtful essays, practical notes, reflections from projects, and the occasional experiment."
-    },
-    {
-      "title": "A sample article you can replace",
-      "slug": "sample-article",
-      "date": "2026-10-01",
-      "category": "Notes",
-      "excerpt": "Use this article to see how writing appears on the site.",
-      "featured": false,
-      "published": true,
-      "body": "This is sample content. Open the admin panel, edit the title and body, then publish your own article.\n\n### You can use Markdown\n\n- headings\n- lists\n- **bold text**\n- links\n\nWriting can stay simple."
+      "body": "# Welcome to My Corner of the Internet\n\nI have wanted a space like this for a while—a place where I can write freely, develop ideas, document what I am learning, and share work that deserves more room than a short social media post can provide.\n\nThis website is that space.\n\nMy interests sit around economics, data, research, technology, and the ways these areas connect with everyday decisions and larger social questions. Some articles may come from projects I am working on. Others may begin with a question, an observation, a dataset, or something I have been trying to understand better.\n\nI also want this website to serve as a record of growth. Learning data science, working with real datasets, studying economic problems, building projects, and exploring new technologies often produce lessons that are worth documenting. Writing gives me a way to examine those lessons more carefully and make them useful to other people.\n\nYou can expect articles on subjects such as data analysis, economics, artificial intelligence, research methods, career development, and technology. There will also be shorter notes whenever an idea does not need a full article.\n\nThe goal is simple: create useful work, think more clearly through writing, and leave a growing collection of ideas that I can look back on.\n\nWelcome.\n\n**— Malik Kolade**"
     }
   ]
 }
