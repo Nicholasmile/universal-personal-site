@@ -2,7 +2,7 @@
 # Replace YOUR_GITHUB_USERNAME/YOUR_REPOSITORY with the repository that stores this site.
 backend:
   name: github
-  repo: malikkolade/universal-personal-site
+  repo: Nicholasmile/universal-personal-site
   branch: main
 
 media_folder: "assets/images/uploads"
