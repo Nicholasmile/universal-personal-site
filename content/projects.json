@@ -1,0 +1,20 @@
+{
+  "projects": [
+    {
+      "title": "Featured Project",
+      "category": "Portfolio",
+      "description": "Describe a project, publication, case study, campaign, design, or piece of work you are proud of.",
+      "url": "",
+      "featured": true,
+      "published": true
+    },
+    {
+      "title": "Second Project",
+      "category": "Research",
+      "description": "Add another example of your work here. The same template can serve many professions.",
+      "url": "",
+      "featured": false,
+      "published": true
+    }
+  ]
+}

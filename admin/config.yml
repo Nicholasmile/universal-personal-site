@@ -1,0 +1,104 @@
+# ONE-TIME SETUP:
+# Replace YOUR_GITHUB_USERNAME/YOUR_REPOSITORY with the repository that stores this site.
+backend:
+  name: github
+  repo: YOUR_GITHUB_USERNAME/YOUR_REPOSITORY
+  branch: main
+
+media_folder: "assets/images/uploads"
+public_folder: "assets/images/uploads"
+
+collections:
+  - name: "settings"
+    label: "Website Settings"
+    files:
+      - label: "Profile & Website"
+        name: "site"
+        file: "content/site.json"
+        format: "json"
+        fields:
+          - {label: "Name", name: "name", widget: "string"}
+          - {label: "Tagline", name: "tagline", widget: "string"}
+          - {label: "Homepage introduction", name: "intro", widget: "text"}
+          - {label: "About biography", name: "bio", widget: "text"}
+          - {label: "Location", name: "location", widget: "string", required: false}
+          - {label: "Email", name: "email", widget: "string"}
+          - {label: "Profile image", name: "profileImage", widget: "image", required: false}
+          - label: "Theme"
+            name: "theme"
+            widget: "select"
+            options:
+              - {label: "Forest", value: "forest"}
+              - {label: "Navy", value: "navy"}
+              - {label: "Wine", value: "wine"}
+              - {label: "Sand", value: "sand"}
+              - {label: "Charcoal", value: "charcoal"}
+          - {label: "Show Writing", name: "showWriting", widget: "boolean", default: true}
+          - {label: "Show Portfolio", name: "showPortfolio", widget: "boolean", default: true}
+          - {label: "Show Notes", name: "showNotes", widget: "boolean", default: true}
+          - label: "Social links"
+            name: "socials"
+            widget: "object"
+            fields:
+              - {label: "LinkedIn", name: "linkedin", widget: "string", required: false}
+              - {label: "GitHub", name: "github", widget: "string", required: false}
+              - {label: "X / Twitter", name: "x", widget: "string", required: false}
+              - {label: "Instagram", name: "instagram", widget: "string", required: false}
+
+  - name: "writing"
+    label: "Writing"
+    files:
+      - label: "Articles"
+        name: "posts"
+        file: "content/posts.json"
+        format: "json"
+        fields:
+          - label: "Articles"
+            name: "posts"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "URL slug", name: "slug", widget: "string", hint: "Example: my-first-article"}
+              - {label: "Date", name: "date", widget: "date", format: "YYYY-MM-DD"}
+              - {label: "Category", name: "category", widget: "string"}
+              - {label: "Short description", name: "excerpt", widget: "text"}
+              - {label: "Featured", name: "featured", widget: "boolean", default: false}
+              - {label: "Published", name: "published", widget: "boolean", default: true}
+              - {label: "Article", name: "body", widget: "markdown"}
+
+  - name: "portfolio"
+    label: "Portfolio"
+    files:
+      - label: "Projects"
+        name: "projects"
+        file: "content/projects.json"
+        format: "json"
+        fields:
+          - label: "Projects"
+            name: "projects"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Category", name: "category", widget: "string"}
+              - {label: "Description", name: "description", widget: "text"}
+              - {label: "Project link", name: "url", widget: "string", required: false}
+              - {label: "Featured", name: "featured", widget: "boolean", default: false}
+              - {label: "Published", name: "published", widget: "boolean", default: true}
+
+  - name: "notes"
+    label: "Notes"
+    files:
+      - label: "Short Notes"
+        name: "notes"
+        file: "content/notes.json"
+        format: "json"
+        fields:
+          - label: "Notes"
+            name: "notes"
+            widget: "list"
+            fields:
+              - {label: "Date", name: "date", widget: "date", format: "YYYY-MM-DD"}
+              - {label: "Note", name: "text", widget: "text"}
+              - {label: "Published", name: "published", widget: "boolean", default: true}

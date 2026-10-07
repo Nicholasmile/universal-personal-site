@@ -1,0 +1,24 @@
+{
+  "posts": [
+    {
+      "title": "Welcome to my corner of the internet",
+      "slug": "welcome",
+      "date": "2026-10-07",
+      "category": "Personal",
+      "excerpt": "A short introduction to this website and the ideas I hope to share here.",
+      "featured": true,
+      "published": true,
+      "body": "## Why this space exists\n\nThis website is a home for my ideas, notes, projects, and longer-form writing.\n\nI want a place that I control, where I can publish at my own pace and organise my work in a way that makes sense to me.\n\n## What to expect\n\nExpect thoughtful essays, practical notes, reflections from projects, and the occasional experiment."
+    },
+    {
+      "title": "A sample article you can replace",
+      "slug": "sample-article",
+      "date": "2026-10-01",
+      "category": "Notes",
+      "excerpt": "Use this article to see how writing appears on the site.",
+      "featured": false,
+      "published": true,
+      "body": "This is sample content. Open the admin panel, edit the title and body, then publish your own article.\n\n### You can use Markdown\n\n- headings\n- lists\n- **bold text**\n- links\n\nWriting can stay simple."
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Your Name",
+  "tagline": "Writer · Researcher · Creative Professional",
+  "intro": "A simple personal website for your ideas, work, and story.",
+  "bio": "Write a short introduction about yourself here. Share what you do, what you care about, and what people can expect from your website.",
+  "location": "Your City, Country",
+  "email": "hello@example.com",
+  "profileImage": "assets/images/profile-placeholder.svg",
+  "theme": "forest",
+  "showWriting": true,
+  "showPortfolio": true,
+  "showNotes": true,
+  "socials": {
+    "linkedin": "",
+    "github": "",
+    "x": "",
+    "instagram": ""
+  }
+}

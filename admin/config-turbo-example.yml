@@ -1,0 +1,11 @@
+# Optional Decap Turbo configuration.
+# Turbo is currently a beta backend. Create a Turbo site first, then replace the ID below.
+backend:
+  name: turbo-github
+  turbo_site_id: YOUR-TURBO-SITE-ID
+  branch: main
+
+media_folder: "assets/images/uploads"
+public_folder: "assets/images/uploads"
+
+# Copy the collections from config.yml below this line when switching to Turbo.
