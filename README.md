@@ -201,8 +201,7 @@ universal-personal-site-template/
 │   ├── posts.json             # Articles
 │   ├── projects.json          # Portfolio projects
 │   └── notes.json             # Short notes
-│
-├── docs/                      # Documentation
+│                     
 ├── netlify.toml               # Netlify publish + security headers
 ├── robots.txt
 ├── OPEN WEBSITE.cmd           # Easy Windows local preview
