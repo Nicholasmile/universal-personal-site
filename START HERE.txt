@@ -1,0 +1,28 @@
+UNIVERSAL PERSONAL WEBSITE TEMPLATE
+===================================
+
+Welcome.
+
+FASTEST WINDOWS PREVIEW
+-----------------------
+1. Double-click: OPEN WEBSITE.cmd
+2. Keep the black terminal window open.
+3. The website should open at http://127.0.0.1:8000
+
+WANT TO PUT IT ONLINE?
+----------------------
+Open README.md and follow the Beginner Setup Guide:
+
+docs/BEGINNER_SETUP.md
+
+AFTER ONLINE SETUP
+------------------
+Manage the site from:
+
+https://YOUR-DOMAIN/admin/
+
+You can update your profile, write articles, add portfolio projects, post notes, upload a profile image, and change the theme from the browser.
+
+IMPORTANT
+---------
+Never upload passwords, OAuth Client Secrets, API keys, or private tokens into the repository.
