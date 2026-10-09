@@ -2,6 +2,16 @@
 
 All notable project changes are documented here.
 
+## 1.1.0 — 2026-10-09
+
+- Added an offline browser editor with profile, themes, section visibility, images, projects, articles and notes.
+- Added live page preview, mobile preview, browser autosave and editable backup import/export.
+- Added dependency-free ZIP export of complete static HTML pages with page-specific metadata.
+- Excluded drafts, hidden sections, editor files and source JSON from exported websites.
+- Added safe Markdown rendering, URL validation, keyboard navigation and accessible mobile menus.
+- Added an optional static CMS build that publishes only generated files.
+- Made the portable editor the default beginner workflow; retained Decap CMS as an advanced option.
+
 ## 1.0.0 — 2026-10-08
 
 ### Added

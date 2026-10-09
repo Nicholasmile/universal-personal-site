@@ -1,322 +1,99 @@
-# Universal Personal Website Template
+# Portfolio Studio — Universal Personal Website Template
 
-A beginner-friendly personal website, blog, and portfolio template that can be managed from a browser without editing code after the initial setup.
+A portable portfolio, personal website and blog for people with no coding experience.
 
-The project is designed for writers, students, researchers, freelancers, developers, designers, consultants, creators, and professionals who want a simple website they control.
+**[Try the live demo](https://portfolio-studio-malik.pages.dev/)**
 
-## What you get
+Built by **Malik Kolade**. This project combines a browser-based editor, live previews, local backups and a static website exporter using vanilla JavaScript. The public editor is hosted on Cloudflare Pages.
 
-- Home page
-- About page
-- Writing / blog section
-- Individual article reader
-- Portfolio / projects section
-- Short notes section
-- Contact page
-- Browser-based `/admin/` editor powered by Decap CMS
-- Image uploads
-- Five built-in colour themes
-- Controls to show or hide Writing, Portfolio, and Notes
-- Responsive layout for desktop, tablet, and mobile
-- Netlify configuration for static deployment
-- Security headers for the deployed site
-- No application database
-- No Node.js build step
-- No Python or Quarto required for the public website
+![Portfolio Studio editor and live website preview](docs/images/portfolio-studio.png)
 
-## Who is this for?
+## Engineering decisions
 
-Use the same template as a:
+- A shared renderer generates both the sandboxed live preview and complete public HTML pages.
+- Public exports contain only published entries in visible sections; editable backups keep drafts separately.
+- The editor works offline without a database or installed development tools.
+- A small Markdown renderer escapes raw HTML and validates link protocols.
+- ZIP generation runs entirely in the browser, with CRC32 integrity checks and no external libraries.
+- Automated checks cover draft exclusion, hidden sections, content safety, validation, uploaded image assets and ZIP structure.
 
-- personal website
-- writing/blog site
-- student profile
-- research website
-- freelance portfolio
-- developer portfolio
-- consulting profile
-- creator website
-- professional landing page
+**Start by opening `editor/index.html`.** On Windows, double-click `OPEN EDITOR.cmd`.
 
-## How it works
+Portfolio Studio runs in your browser. Edit your profile, upload a photo, choose a theme, add projects, write articles and preview the results. Download a complete website ZIP and upload it to a static hosting provider of your choice.
 
-```text
-Website owner
-    ↓
-/admin/ dashboard
-    ↓
-Decap CMS
-    ↓
-GitHub repository
-    ↓
-Netlify automatic deployment
-    ↓
-Public website
-```
-
-The public site is plain HTML, CSS, and JavaScript. Content is stored in JSON files inside the repository. Decap CMS provides the browser-based editor and commits approved changes back to GitHub. Netlify detects the GitHub update and deploys the new version of the site.
+No installation, Python, GitHub, Netlify or OAuth setup is needed for the portable editor. Hosting a public website still requires a hosting account.
 
 ## Quick start
 
-For the complete beginner walkthrough, read:
+1. Extract the template ZIP and open `editor/index.html`.
+2. Replace the sample profile and entries with your own.
+3. Choose which sections to show and which entries to include.
+4. Click **Save backup** to keep an editable copy, including drafts.
+5. Click **Download website** to get your public website ZIP.
+6. Upload that website ZIP to a static host. For example, Cloudflare Pages supports dashboard Direct Upload.
 
-**[Beginner Setup Guide](docs/BEGINNER_SETUP.md)**
+Read the [Beginner Setup Guide](docs/BEGINNER_SETUP.md) or the [complete editor guide](docs/PORTABLE_EDITOR.md).
 
-The basic process is:
+## What you get
 
-1. Create a GitHub repository.
-2. Upload this template.
-3. Update `admin/config.yml` with your exact GitHub username and repository name.
-4. Import the repository into Netlify.
-5. Create a GitHub OAuth App.
-6. Add the OAuth credentials to your Netlify project.
-7. Visit `https://your-site.netlify.app/admin/`.
-8. Sign in with GitHub and edit the website from your browser.
+- Profile, projects, articles, notes and contact pages
+- Five colour themes and controls to hide unused sections
+- PNG, JPEG and WebP profile photo upload
+- Live page preview and mobile preview
+- Browser autosave, backup downloads and backup imports
+- Complete HTML export with page-specific titles and descriptions
+- Individual article pages with readable addresses
+- A downloadable ZIP with no external script dependencies
+- Drafts and hidden sections excluded from public exports
+- Keyboard focus styles, skip links and accessible mobile menus
+- An optional GitHub-backed Decap CMS workflow for advanced users
 
-## Local preview
+## How editing works
 
-### Windows — easiest method
+Open editor → fill in forms → preview → save backup → download website → upload to hosting.
 
-Double-click:
+Browser autosave is a convenience. Save a backup after editing: browser storage may be cleared or unavailable. Backups contain drafts and should stay private. Website downloads contain only the published content in visible sections.
 
-```text
-OPEN WEBSITE.cmd
-```
+Your exported website works without JavaScript for its content. A small script controls the mobile menu. Extract the website ZIP and open its `index.html` to preview it offline.
 
-The launcher starts a small local web server and opens the site in your browser.
+The editor never uploads your work or connects to your hosting account. Changes become public only when you upload a new website export. An image supplied by URL is still loaded from its external host.
 
-### Any operating system with Python
+## For existing CMS users
 
-From the project folder:
+The original Decap CMS in `admin/` remains available as an advanced option. It requires GitHub authentication configuration and is separate from the portable editor.
 
-```bash
-python -m http.server 8000
-```
+The included Netlify configuration now builds static pages with `node tools/build-site.cjs --cms` and publishes `dist/`, rather than serving source JSON. Drafts are excluded from that public build. The CMS edits the repository JSON files as before.
 
-On some macOS/Linux systems use:
+See [advanced Netlify setup](docs/NETLIFY_SETUP.md) and [CMS editing](docs/CMS_GUIDE.md). Do not upload the entire source folder as your public website.
 
-```bash
-python3 -m http.server 8000
-```
+## Maintainer commands
 
-Then visit:
-
-```text
-http://127.0.0.1:8000
-```
-
-Do not rely on double-clicking `index.html`. Modern browsers usually block the local `fetch()` requests used to load the JSON content when a page is opened through `file://`.
-
-## Admin dashboard
-
-After online setup, visit:
+Node.js is needed only for these maintainer commands, not for the portable browser editor.
 
 ```text
-https://YOUR-SITE.netlify.app/admin/
+node tools/prepare-editor.cjs
+node --test tests/builder.test.cjs
+node tools/build-site.cjs
+node tools/package-template.cjs
 ```
 
-The admin can manage:
+`prepare-editor.cjs` refreshes the editor's bundled sample content and styles after changes to the source JSON or CSS. It does not alter an owner's saved editor data. `build-site.cjs` creates `dist/` and `sample-website.zip` from repository content; it replaces the generated `dist/` directory on each build.
 
-### Website Settings
+`package-template.cjs` creates `portfolio-template.zip` for distribution. It excludes generated exports, the preview screenshot and local tool metadata. It packages generic samples, not browser-local edits or downloaded backups.
 
-- name
-- tagline
-- homepage introduction
-- biography
-- location
-- email
-- profile image
-- colour theme
-- section visibility
-- social links
+## Structure
 
-### Writing
+- `editor/` — offline Portfolio Studio, bundled sample content and editor styling
+- `assets/js/site-builder.js` — validation, safe Markdown, static rendering and ZIP generation
+- `assets/css/style.css` — shared public website design
+- `content/` — sample JSON and optional CMS source content
+- `admin/` — optional Decap CMS
+- `tools/` — maintainer helpers and optional static build
+- `tests/` — export, privacy, validation and ZIP checks
+- `docs/` — beginner and advanced documentation
 
-- title
-- URL slug
-- date
-- category
-- description
-- featured status
-- published/draft status
-- Markdown article body
-
-### Portfolio
-
-- title
-- category
-- description
-- project URL
-- featured status
-- published/draft status
-
-### Notes
-
-- date
-- short note
-- published/draft status
-
-Read the **[Admin User Guide](docs/ADMIN_GUIDE.md)** for the full browser-editing workflow.
-
-## Built-in themes
-
-Choose one from the admin dashboard:
-
-- Forest
-- Navy
-- Wine
-- Sand
-- Charcoal
-
-Developers can add or change themes in `assets/css/style.css`.
-
-## Project structure
-
-```text
-universal-personal-site-template/
-│
-├── index.html                 # Home
-├── about.html                 # About
-├── writing.html               # Article listing
-├── article.html               # Individual article reader
-├── portfolio.html             # Projects
-├── notes.html                 # Short notes
-├── contact.html               # Contact information
-├── 404.html                   # Friendly not-found page
-│
-├── admin/
-│   ├── index.html             # Decap CMS loader
-│   ├── config.yml             # CMS fields + GitHub repository configuration
-│   └── config-turbo-example.yml
-│
-├── assets/
-│   ├── css/style.css          # Site design
-│   ├── js/app.js              # Content loading and page rendering
-│   └── images/
-│       ├── profile-placeholder.svg
-│       └── uploads/           # Images uploaded through the CMS
-│
-├── content/
-│   ├── site.json              # Profile and site settings
-│   ├── posts.json             # Articles
-│   ├── projects.json          # Portfolio projects
-│   └── notes.json             # Short notes
-│                     
-├── netlify.toml               # Netlify publish + security headers
-├── robots.txt
-├── OPEN WEBSITE.cmd           # Easy Windows local preview
-├── START HERE.txt             # Very short first-run instructions
-├── README.md
-├── SECURITY.md
-├── CONTRIBUTING.md
-├── CHANGELOG.md
-└── LICENSE
-```
-
-## Content model
-
-The website deliberately uses simple JSON files instead of a database.
-
-- `content/site.json` — personal details and design options
-- `content/posts.json` — blog posts/articles
-- `content/projects.json` — portfolio entries
-- `content/notes.json` — short notes
-
-Most users should edit these through `/admin/`, not by opening the JSON files manually.
-
-## Publishing workflow
-
-Once everything is configured, normal publishing is simple:
-
-```text
-Open /admin/
-→ Edit content
-→ Publish
-→ Decap commits to GitHub
-→ Netlify deploys automatically
-→ Updated website goes live
-```
-
-A GitHub login is required by the default CMS backend, and the logged-in GitHub user must have push access to the repository.
-
-## Documentation
-
-- **[Beginner Setup Guide](docs/BEGINNER_SETUP.md)** — from ZIP file to a live website
-- **[Admin User Guide](docs/ADMIN_GUIDE.md)** — write and update content without coding
-- **[Customization Guide](docs/CUSTOMIZATION.md)** — themes, text, layout, and branding
-- **[Troubleshooting](docs/TROUBLESHOOTING.md)** — common errors and fixes
-- **[Developer Guide](docs/DEVELOPER_GUIDE.md)** — architecture and technical notes
-- **[Security Policy](SECURITY.md)** — secrets, access, and safe deployment
-- **[Contributing](CONTRIBUTING.md)** — how to improve the template
-
-## Important setup detail
-
-In `admin/config.yml`, this line must match the GitHub repository exactly:
-
-```yaml
-backend:
-  name: github
-  repo: YOUR_GITHUB_USERNAME/YOUR_REPOSITORY
-  branch: main
-```
-
-Example:
-
-```yaml
-backend:
-  name: github
-  repo: janedoe/my-personal-site
-  branch: main
-```
-
-A mismatch causes Decap CMS to report that the repository cannot be found.
-
-## Privacy and security
-
-Never store passwords, API keys, GitHub tokens, OAuth client secrets, private credentials, or confidential data inside this repository.
-
-The GitHub OAuth **Client Secret belongs in Netlify's secure OAuth configuration**, not in `config.yml` or any HTML/JavaScript file.
-
-See [SECURITY.md](SECURITY.md) for more guidance.
-
-## Deployment notes
-
-This is a static site. Netlify does not need a build command.
-
-The included `netlify.toml` publishes the project root:
-
-```toml
-[build]
-  publish = "."
-```
-
-## Current CMS authentication model
-
-The default configuration uses Decap CMS's GitHub backend. It expects:
-
-- the site repository to be on GitHub
-- a GitHub OAuth App
-- GitHub OAuth configured in Netlify
-- CMS users to have push access to the repository
-
-The included `admin/config-turbo-example.yml` is an optional starting point for users who prefer Decap Turbo instead.
-
-## Browser support
-
-Use a current version of Chrome, Edge, Firefox, or Safari.
+The root HTML pages remain a legacy developer preview and need a web server to load JSON. The portable editor and exported websites work directly from disk.
 
 ## License
 
-This template is released under the MIT License. See [LICENSE](LICENSE).
-
-You may use it for personal projects, client work, education, experiments, or commercial websites, subject to the license terms.
-
-## Project status
-
-**Version: 1.0.0**
-
-The template is intentionally lightweight. Feature ideas and contributions are welcome.
-
-## Maintainer
-
-Created and maintained by **Malik Kolade**.
+MIT. Created and maintained by Malik Kolade. Version 1.1.0.

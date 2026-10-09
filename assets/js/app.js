@@ -12,7 +12,8 @@ function escapeHTML(value='') {
 }
 
 function linkOrEmpty(label, url) {
-  return url ? `<a href="${escapeHTML(url)}" target="_blank" rel="noopener">${escapeHTML(label)}</a>` : '';
+  const safe = window.SiteBuilder?.safeURL(url);
+  return safe ? `<a href="${escapeHTML(safe)}" target="_blank" rel="noopener noreferrer">${escapeHTML(label)}</a>` : '';
 }
 
 async function initShell() {
@@ -22,8 +23,8 @@ async function initShell() {
 
   const header = $('#site-header');
   if (header) {
-    header.innerHTML = `<div class="site-header"><div class="container nav"><a class="brand" href="index.html">${escapeHTML(site.name)}</a><button class="nav-toggle" aria-label="Open menu">Menu</button><nav class="nav-links"><a href="index.html">Home</a><a href="about.html">About</a>${site.showWriting ? '<a href="writing.html">Writing</a>' : ''}${site.showPortfolio ? '<a href="portfolio.html">Portfolio</a>' : ''}${site.showNotes ? '<a href="notes.html">Notes</a>' : ''}<a href="contact.html">Contact</a></nav></div></div>`;
-    $('.nav-toggle')?.addEventListener('click', () => $('.nav-links')?.classList.toggle('open'));
+    header.innerHTML = `<div class="site-header"><div class="container nav"><a class="brand" href="index.html">${escapeHTML(site.name)}</a><button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-navigation">Menu</button><nav id="site-navigation" class="nav-links"><a href="index.html">Home</a><a href="about.html">About</a>${site.showWriting ? '<a href="writing.html">Writing</a>' : ''}${site.showPortfolio ? '<a href="portfolio.html">Portfolio</a>' : ''}${site.showNotes ? '<a href="notes.html">Notes</a>' : ''}<a href="contact.html">Contact</a></nav></div></div>`;
+    $('.nav-toggle')?.addEventListener('click', e => { const open = $('.nav-links')?.classList.toggle('open'); e.currentTarget.setAttribute('aria-expanded', String(open)); });
   }
 
   const footer = $('#site-footer');
@@ -38,7 +39,8 @@ function postCard(post) {
 }
 
 function projectCard(project) {
-  const action = project.url ? `<p><a class="text-link" href="${escapeHTML(project.url)}" target="_blank" rel="noopener">View project →</a></p>` : '';
+  const safe = window.SiteBuilder?.safeURL(project.url);
+  const action = safe ? `<p><a class="text-link" href="${escapeHTML(safe)}" target="_blank" rel="noopener noreferrer">View project →</a></p>` : '';
   return `<article class="card"><span class="tag">${escapeHTML(project.category || 'Project')}</span><h3>${escapeHTML(project.title)}</h3><p>${escapeHTML(project.description || '')}</p>${action}</article>`;
 }
 
@@ -49,11 +51,11 @@ async function renderHome(site) {
   $('#hero-photo').src = site.profileImage || 'assets/images/profile-placeholder.svg';
 
   const [{posts=[]},{projects=[]}] = await Promise.all([loadJSON('content/posts.json'), loadJSON('content/projects.json')]);
-  const latest = posts.filter(p=>p.published).sort((a,b)=>String(b.date).localeCompare(String(a.date))).slice(0,3);
-  const featuredProjects = projects.filter(p=>p.published).slice(0,3);
+  const latest = posts.filter(p=>p.published).sort((a,b)=>(Number(b.featured)-Number(a.featured)) || String(b.date).localeCompare(String(a.date))).slice(0,3);
+  const featuredProjects = projects.filter(p=>p.published).sort((a,b)=>Number(b.featured)-Number(a.featured)).slice(0,3);
   $('#latest-posts').innerHTML = latest.length ? latest.map(postCard).join('') : '<p class="empty">No articles yet.</p>';
   $('#featured-projects').innerHTML = featuredProjects.length ? featuredProjects.map(projectCard).join('') : '<p class="empty">No projects yet.</p>';
-  if (!site.showWriting) $('#writing-section')?.remove();
+  if (!site.showWriting) { $('#writing-section')?.remove(); $('.actions a[href="writing.html"]')?.remove(); }
   if (!site.showPortfolio) $('#portfolio-section')?.remove();
 }
 
@@ -105,7 +107,7 @@ async function renderArticle() {
   document.title = post.title;
   $('#article-title').textContent = post.title;
   $('#article-meta').textContent = `${post.category || 'Writing'} · ${post.date || ''}`;
-  $('#article-body').innerHTML = window.marked ? marked.parse(post.body || '') : `<p>${escapeHTML(post.body || '')}</p>`;
+  $('#article-body').innerHTML = window.SiteBuilder ? SiteBuilder.markdown(post.body || '') : `<p>${escapeHTML(post.body || '')}</p>`;
 }
 
 (async () => {

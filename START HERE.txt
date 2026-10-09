@@ -1,28 +1,19 @@
-UNIVERSAL PERSONAL WEBSITE TEMPLATE
-===================================
+YOUR WEBSITE STARTS HERE
+=======================
 
-Welcome.
+1. Extract this template ZIP. Keep the files together.
+2. Open editor/index.html in your browser.
+   On Windows, you can double-click OPEN EDITOR.cmd instead.
+3. Replace the example profile, projects, writing and notes.
+4. Choose a theme and check which entries to include.
+5. Click Save backup. Keep this editable JSON copy safe and private.
+6. Click Download website.
+7. Upload that website ZIP to a static hosting provider.
 
-FASTEST WINDOWS PREVIEW
------------------------
-1. Double-click: OPEN WEBSITE.cmd
-2. Keep the black terminal window open.
-3. The website should open at http://127.0.0.1:8000
+No Python, GitHub, Netlify or OAuth setup is needed for the editor.
+You need a hosting account and internet access to put the site online.
 
-WANT TO PUT IT ONLINE?
-----------------------
-Open README.md and follow the Beginner Setup Guide:
+For updates: reopen the editor, open your backup, edit, save a new
+backup, download a new website ZIP and replace the online deployment.
 
-docs/BEGINNER_SETUP.md
-
-AFTER ONLINE SETUP
-------------------
-Manage the site from:
-
-https://YOUR-DOMAIN/admin/
-
-You can update your profile, write articles, add portfolio projects, post notes, upload a profile image, and change the theme from the browser.
-
-IMPORTANT
----------
-Never upload passwords, OAuth Client Secrets, API keys, or private tokens into the repository.
+Read docs/BEGINNER_SETUP.md for help.

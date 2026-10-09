@@ -1,5 +1,15 @@
 # Security Policy
 
+## Portable editor and exports
+
+The browser editor keeps work on the user's computer. Browser autosave is not an access control mechanism; anyone using that browser profile may be able to open the saved work. Backup JSON includes drafts and uploaded photos. Keep backups private and publish only the exported website ZIP.
+
+Static exports exclude drafts and hidden sections entirely. Raw article HTML is escaped; supported Markdown is rendered without accepting raw HTML. Public links are limited to HTTP(S). Remote profile image URLs contact their external host; use photo upload for a self-contained website.
+
+For repository/CMS deployments, build with `node tools/build-site.cjs --cms` and publish only `dist/`. Serving the repository root exposes the source JSON, including drafts. A public GitHub repository also exposes drafts in its files and history, even when the public site export excludes them. Use a private repository for unpublished material.
+
+When removing a published article, replace the entire deployment with a new export. Removing a page from a new ZIP does not delete an old copy if a host merges uploaded files. Previously published material may remain in search caches or archives.
+
 ## Supported version
 
 Security fixes are intended for the latest version of the template.

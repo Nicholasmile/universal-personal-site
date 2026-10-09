@@ -7,3 +7,15 @@ desktop.ini
 !.env.example
 .vscode/
 .idea/
+
+dist/
+sample-website.zip
+portfolio-template.zip
+editor-preview.png
+hosted-studio/
+hosted-studio-deploy.tar.gz
+portfolio-studio-public.zip
+cloudflare-public-preview.png
+github-source/
+node_modules/
+*.log
