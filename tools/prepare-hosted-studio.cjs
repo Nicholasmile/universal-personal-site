@@ -8,7 +8,7 @@ index = index.replace('<title>Portfolio Studio</title>','<title>Portfolio Studio
 index = index.replace('<div class="tools">','<div class="tools"><a class="file-button" href="portfolio-template.zip" download>Get offline template</a>');
 index = index.replace('Ready to make this yours.','Your edits stay in this browser. Save a backup to keep a separate copy.');
 fs.writeFileSync(path.join(out,'index.html'),index);
-for (const filename of ['editor.css','editor.js','seed.js']) fs.copyFileSync(path.join(root,'editor',filename),path.join(out,filename));
+for (const filename of ['editor.css','editor.js','seed.js','deploy.html','guide.css']) fs.copyFileSync(path.join(root,'editor',filename),path.join(out,filename));
 fs.appendFileSync(path.join(out,'editor.css'),'\na.file-button{text-decoration:none;display:inline-flex;align-items:center}\n');
 fs.copyFileSync(path.join(root,'assets/js/site-builder.js'),path.join(out,'assets/js/site-builder.js'));
 fs.copyFileSync(path.join(root,'portfolio-template.zip'),path.join(out,'portfolio-template.zip'));

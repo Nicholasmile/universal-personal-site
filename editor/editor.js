@@ -101,7 +101,7 @@
     e.target.value = '';
   });
   $('#export').addEventListener('click',() => {
-    try { const files = B.build(data,seed.css); download(B.zip(files),'application/zip','my-portfolio-website.zip'); status('Website downloaded. Upload the ZIP to your host to publish. Save a backup for future edits.'); }
+    try { const files = B.build(data,seed.css); download(B.zip(files),'application/zip','my-portfolio-website.zip'); status('Website downloaded. Next: follow the guide to upload my-portfolio-website.zip to Cloudflare. Save a backup for future edits.'); const guide = document.createElement('a'); guide.href = 'deploy.html'; guide.target = '_blank'; guide.rel = 'noopener'; guide.className = 'guide-link'; guide.textContent = 'Open the complete deployment guide →'; $('#status').append(document.createElement('br'),guide); }
     catch (error) { status(error.message,true); }
   });
   $('#reset').addEventListener('click',() => $('#reset-dialog').showModal());

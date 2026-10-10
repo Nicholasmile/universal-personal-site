@@ -4,6 +4,8 @@ A portable portfolio, personal website and blog for people with no coding experi
 
 **[Try the live demo](https://portfolio-studio-malik.pages.dev/)**
 
+**[Beginner guide: create your website and publish it on Cloudflare](https://portfolio-studio-malik.pages.dev/deploy.html)** — every step, the exact file to upload, verification, sharing your link, troubleshooting and later updates.
+
 Built by **Malik Kolade**. This project combines a browser-based editor, live previews, local backups and a static website exporter using vanilla JavaScript. The public editor is hosted on Cloudflare Pages.
 
 ![Portfolio Studio editor and live website preview](docs/images/portfolio-studio.png)
